@@ -1,0 +1,35 @@
+#titleCont{
+    margin-top: 10px;
+    height: 200px;
+
+}
+
+#buttonsRow{
+margin-top: 50px;
+}
+
+#textTitle{
+    font-family: 'ZCOOL XiaoWei', serif;
+    font-size: 100px;
+    color: white;
+    padding-top: 30px;
+}
+
+.list-group-item{
+    margin-top: 30px;
+}
+
+.articlecomplete{
+    float: right;
+    width: 880px;
+}
+
+.saveArticleBtn{
+margin-top: 5px;
+margin-left: 20px;
+width: 200px;
+float: right;
+}
+
+
+
