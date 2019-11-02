@@ -98,8 +98,12 @@ $(document).on("click", "#saveBtn", function () {
 
         }).then(function (data) {
             console.log("Create Note " + data);
-
+            showSaved();
+            $("#recipient-name").val("");
+            $("#message-text").val("");
+            $("#commentModal").modal("hide");
         });
+    
 
 
     } else {
@@ -154,13 +158,20 @@ function showSaved() {
                         url: "/articles/" + data[i]._id
                     })
                         .then(function (response) {
+                            
+                            
                             console.log(response);
-
+                            
+                            console.log(response._id);
                             if (response.note.length === 0) {
-                                $(`.divComment[data-id=${data[i]._id}]`).append($('<p class="comments">No Comments</p>'))
+                                $(`.divComment[data-id="${response._id}"]`).append($('<p class="comments">No Comments</p>'))
                             } else {
+                                
+                                
                                 for (var j = 0; j < response.note.length; j++) {
-                                    $(`.divComment[data-id=${data[i]._id}]`).append($('<p class="comments">' + response.note[j].author + '  -  ' + response.note[j].body + '</p > '))
+                                    console.log(response._id[j] );
+                                    console.log(response.note[j].body, j );
+                                    $(`.divComment[data-id="${response._id}"]`).append($('<p class="comments">' + response.note[j].author + '  -  ' + response.note[j].body + '</p > '))
                                 }
 
                             }
