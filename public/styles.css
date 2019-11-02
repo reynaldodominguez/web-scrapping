@@ -31,5 +31,45 @@ width: 200px;
 float: right;
 }
 
+.removeArticleBtn{
 
+    margin-left: 20px;
+    width: 180px;
+    float: right;
+    margin-top: 5px;
+}
 
+#noSaved{
+    margin-top: 50px;
+    font-size: 100px;
+    font-family: 'ZCOOL XiaoWei', serif;
+    text-align: center;
+    color: #17a2b8!important;
+}
+
+.addCommentBtn{
+    margin-top: 5px;
+    width: 180px;
+    float: left;
+}
+.btnDiv {
+    position: relative;
+}
+.divComment{
+    position: absolute;
+    left: 200px;
+    width: 700px;
+    /* margin-left: 200px;
+    margin-top: 5px;
+    margin-right: 0px; */
+    margin:0;
+
+}
+
+.comments{
+    font-size: 14px;
+}
+
+.commentTitle{
+    margin-bottom: 0px;
+}

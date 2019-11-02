@@ -1,4 +1,4 @@
-var mongoose =  require("mongoose");
+var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
@@ -6,19 +6,30 @@ var ArticleSchema = new Schema({
     title: {
         type: String,
         required: true
-      },
-      link: {
+    },
+    link: {
         type: String,
         required: true
-      },
-      date: {
+    },
+    date: {
         type: String,
         required: true
-      },
-      resume: {
+    },
+    resume: {
         type: String,
         required: true
-      }
+    },
+    img: {
+        type: String,
+        required: true
+    },
+    note: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Note"
+        }
+    ]
+
 });
 
 var Article = mongoose.model("Article", ArticleSchema);

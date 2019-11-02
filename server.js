@@ -41,21 +41,76 @@ app.get("/scrape", function (req, res) {
 
 
         })
-        console.log(results);
+        // console.log(results);
         res.json(results);
     })
 })
 
 app.post("/articles", function (req, res) {
-    console.log(req.params);
-    
-    db.Article.create(req.params)
+    // console.log("Working");
+    // console.log(req.body);
+
+    db.Article.create(req.body)
         .then(function (dbArticle) {
-            console.log(dbArticle);
+            res.json(dbArticle);
+            // console.log(dbArticle);
         })
         .catch(function (err) {
             console.log(err);
         });
+})
+
+app.get("/savedarticles", function (req, res) {
+    db.Article.find({})
+        .then(function (data) {
+            res.json(data);
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
+})
+
+app.delete("/articles/:id", function(req, res){
+    // console.log("Id back end " + req.params.id);
+
+    db.Article.remove({_id: req.params.id})
+    .then(function(data){
+        res.json(data);
+       // console.log("Deleted "+ data);
+        
+    })
+    .catch(function (err) {
+        res.json(err);
+    });
+})
+
+app.post("/articles/:id", function(req, res){
+    // console.log("Id back end " + req.params.id);
+
+    db.Note.create(req.body)
+    .then(function(dbNote){
+        return db.Article.findByIdAndUpdate({_id: req.params.id}, {$push:{note: dbNote._id}}, {new: true});
+        
+    }).then(function(data){
+        res.json(data);
+    })
+    .catch(function (err) {
+        res.json(err);
+    });
+})
+
+app.get("/articles/:id", function(req, res){
+    // console.log("Id back end " + req.params.id);
+
+    db.Article.findOne({_id: req.params.id})
+
+    .populate("note")
+    .then(function(data){
+        res.json(data);
+    })
+    .catch(function (err) {
+        res.json(err);
+    });
 })
 
 app.listen(PORT, function () {
